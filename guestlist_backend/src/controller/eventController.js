@@ -30,6 +30,16 @@ export const addGuest = (req, res) => {
 };
 export const getGuest = (req, res) => {
   res.json({
-    message: `This is guest #${req.params.guest}`,
+    message: `This is ${req.params.guest} guest info`,
+  });
+};
+export const updateGuest = (req, res) => {
+  res.json({
+    message: `Updated guest info of ${req.params.guest}`,
+  });
+};
+export const deleteGuest = (req, res) => {
+  res.json({
+    message: `Deleted ${req.params.guest} from the guestlist`,
   });
 };
