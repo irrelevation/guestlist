@@ -1,0 +1,64 @@
+{
+  "name": "guestlist_backend",
+  "version": "1.0.0",
+  "description": "API and DB of the guestlist app",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irrelevation/guestlist.git"
+  },
+  "author": "Lukas Zöllner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irrelevation/guestlist/issues"
+  },
+  "homepage": "https://github.com/irrelevation/guestlist#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.1"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "rules": {
+      "prettier/prettier": "warn",
+      "eqeqeq": "warn"
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "endOfLine": "lf"
+  },
+  "jest": {
+    "transform": {}
+  }
+}
