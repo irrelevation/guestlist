@@ -21,7 +21,12 @@
   },
   "homepage": "https://github.com/irrelevation/guestlist#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
     "express": "^4.17.2",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.1.7",
+    "morgan": "^1.10.0",
     "winston": "^3.4.0"
   },
   "devDependencies": {
