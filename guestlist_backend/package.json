@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
+    "start": "NODE_ENV=production node --es-module-specifier-resolution=node index.js",
     "dev": "NODE_ENV=development nodemon --es-module-specifier-resolution=node index.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "lint": "eslint ."
