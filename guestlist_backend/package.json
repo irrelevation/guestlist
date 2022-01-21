@@ -5,8 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon --es-module-specifier-resolution=node index.js",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon --es-module-specifier-resolution=node index.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "lint": "eslint ."
   },
@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/irrelevation/guestlist#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "winston": "^3.4.0"
   },
   "devDependencies": {
     "eslint": "^8.7.0",

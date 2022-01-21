@@ -12,6 +12,7 @@ eventRouter
   .delete(eventController.deleteEvent);
 
 eventRouter.route("/:eventId/guests").get(eventController.getAllGuests).post(eventController.addGuest);
+
 eventRouter
   .route("/:eventId/guests/:guest")
   .get(eventController.getGuest)
