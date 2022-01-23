@@ -1,7 +1,14 @@
-export const createEvent = (req, res) => {
-  res.json({
-    message: "event created",
-  });
+import { Event } from "../models/eventModel";
+
+export const createEvent = async (req, res, next) => {
+  Event.create(req.body)
+    .then((data) => {
+      res.json({
+        message: "Event created",
+        data,
+      });
+    })
+    .catch(next);
 };
 export const getEvent = (req, res) => {
   res.json({

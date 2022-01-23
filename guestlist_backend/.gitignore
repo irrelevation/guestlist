@@ -1,18 +1,21 @@
-# Logs
+# logs
 logs
 *.log
 npm-debug.log*
 
-# Dependency directories
+# dependency directories
 node_modules
 jspm_packages
 
-# Optional npm cache directory
+# npm cache directory
 .npm
 
-# Optional REPL history
+# REPL history
 .node_repl_history
 .DS_Store
 
-#Excluding build directory
+# build directory
 public/
+
+# environment variables
+.env
