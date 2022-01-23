@@ -2,7 +2,7 @@ import { logger } from "../logger";
 import { Event } from "../models/eventModel";
 
 export const createEvent = async (req, res, next) => {
-  const event = await Event.create(req.body);
+  const event = await Event.select("-__v").create(req.body);
   res.json({
     message: "Event created",
     data: event,
@@ -38,7 +38,8 @@ export const getAllGuests = async (req, res) => {
   const { guests } = await Event.findById(req.params.eventId);
   const status = guests ? 200 : 204;
   res.status(status).json({
-    data: guests,
+    count: guests.length,
+    guests,
   });
 };
 
