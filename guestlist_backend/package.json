@@ -23,7 +23,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
-    "express": "^4.17.2",
+    "express": "^5.0.0-alpha.8",
     "http-errors": "^2.0.0",
     "mongoose": "^6.1.7",
     "morgan": "^1.10.0",

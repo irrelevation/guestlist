@@ -7,8 +7,10 @@ export const custom404Handler = (req, res, next) => {
 };
 
 export const errorLogger = (err, req, res, next) => {
-  logger.error(error.message);
-  logger.debug(error.stack);
+  if (err.status >= 500) {
+    logger.error(err.message);
+    logger.debug(err.stack);
+  }
   next(err);
 };
 

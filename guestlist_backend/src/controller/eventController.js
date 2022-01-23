@@ -1,52 +1,81 @@
+import { logger } from "../logger";
 import { Event } from "../models/eventModel";
 
 export const createEvent = async (req, res, next) => {
-  Event.create(req.body)
-    .then((data) => {
-      res.json({
-        message: "Event created",
-        data,
-      });
-    })
-    .catch(next);
-};
-export const getEvent = (req, res) => {
+  const event = await Event.create(req.body);
   res.json({
-    message: `This is event #${req.params.eventId}`,
+    message: "Event created",
+    data: event,
   });
 };
-export const updateEvent = (req, res) => {
-  res.json({
+
+export const getEvent = async (req, res) => {
+  const event = await Event.findById(req.params.eventId);
+  const status = event ? 200 : 204;
+  res.status(status).json({
+    data: event,
+  });
+};
+
+export const updateEvent = async (req, res) => {
+  const event = await Event.findByIdAndUpdate(req.params.eventId, req.body, { new: true });
+  const status = event ? 200 : 204;
+  res.status(status).json({
     message: "event updated",
+    data: event,
   });
 };
-export const deleteEvent = (req, res) => {
-  res.json({
+
+export const deleteEvent = async (req, res) => {
+  const event = await Event.findByIdAndDelete(req.params.eventId);
+  const status = event ? 200 : 204;
+  res.status(status).json({
     message: "event deleted",
   });
 };
-export const getAllGuests = (req, res) => {
-  res.json({
-    message: `All guests of event #${req.params.eventId}`,
+
+export const getAllGuests = async (req, res) => {
+  const { guests } = await Event.findById(req.params.eventId);
+  const status = guests ? 200 : 204;
+  res.status(status).json({
+    data: guests,
   });
 };
-export const addGuest = (req, res) => {
-  res.json({
+
+export const getGuest = async (req, res) => {
+  const { guests } = await Event.findById(req.params.eventId);
+  const guest = guests.filter((guest) => guest.name === req.params.guest);
+  const status = guest.length > 0 ? 200 : 204;
+  res.status(status).json({
+    data: guest,
+  });
+};
+
+export const addGuest = async (req, res) => {
+  const event = await Event.findByIdAndUpdate(req.params.eventId, { $push: { guests: req.body } }, { new: true });
+  const status = event ? 200 : 204;
+  res.status(status).json({
     message: `${req.body.name} was added to the guest list`,
+    data: event,
   });
 };
-export const getGuest = (req, res) => {
-  res.json({
-    message: `This is ${req.params.guest} guest info`,
+
+export const updateGuest = async (req, res) => {
+  const event = await Event.updateOne(
+    { _id: req.params.eventId, "guests.name": req.params.guest },
+    { "guests.$": req.body },
+    { new: true }
+  );
+  const status = event.matchedCount > 0 ? 200 : 204;
+  res.status(status).json({
+    message: `Updated guestlist entry for  ${req.body.name}`,
   });
 };
-export const updateGuest = (req, res) => {
-  res.json({
-    message: `Updated guest info of ${req.params.guest}`,
-  });
-};
-export const deleteGuest = (req, res) => {
+
+export const deleteGuest = async (req, res) => {
+  const event = await Event.findByIdAndUpdate(req.params.eventId, { $pull: { guests: { name: req.params.guest } } });
   res.json({
     message: `Deleted ${req.params.guest} from the guestlist`,
+    data: event,
   });
 };

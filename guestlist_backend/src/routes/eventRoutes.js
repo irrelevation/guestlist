@@ -15,6 +15,6 @@ eventRouter.route("/:eventId/guests").get(eventController.getAllGuests).post(eve
 
 eventRouter
   .route("/:eventId/guests/:guest")
-  .get(eventController.getGuest)
   .patch(eventController.updateGuest)
+  .get(eventController.getGuest)
   .delete(eventController.deleteGuest);

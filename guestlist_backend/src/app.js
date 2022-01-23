@@ -15,8 +15,7 @@ mongoose
 
 mongoose.connection
   .on("disconnected", () => logger.error("Lost connection to MongoDB"))
-  .on("reconnected", () => logger.info("Reconnected to MongoDB"))
-  .on("error", () => logger.info("Encountered and error with MongoDB after initial connection was established"));
+  .on("reconnected", () => logger.info("Reconnected to MongoDB"));
 
 export const app = express();
 const API_URL_PREFIX = "/api/v1";
