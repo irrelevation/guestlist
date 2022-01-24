@@ -1,7 +1,6 @@
-import { logger } from "../logger";
 import { Event } from "../models/eventModel";
 
-export const createEvent = async (req, res, next) => {
+export const createEvent = async (req, res) => {
   const event = await Event.select("-__v").create(req.body);
   res.json({
     message: "Event created",
