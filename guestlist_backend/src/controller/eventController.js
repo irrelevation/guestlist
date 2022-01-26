@@ -1,7 +1,7 @@
 import { Event } from "../models/eventModel";
 
 export const createEvent = async (req, res) => {
-  const event = await Event.select("-__v").create(req.body);
+  const event = await Event.create(req.body);
   res.json({
     message: "Event created",
     data: event,

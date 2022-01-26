@@ -21,12 +21,16 @@
   },
   "homepage": "https://github.com/irrelevation/guestlist#readme",
   "dependencies": {
+    "argon2": "^0.28.3",
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
     "express": "^5.0.0-alpha.8",
     "http-errors": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.7",
     "morgan": "^1.10.0",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
     "winston": "^3.4.0"
   },
   "devDependencies": {

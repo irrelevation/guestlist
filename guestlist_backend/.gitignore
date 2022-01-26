@@ -19,3 +19,6 @@ public/
 
 # environment variables
 .env
+
+# keys
+id_rsa_priv.pem
