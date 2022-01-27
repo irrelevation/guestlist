@@ -6,11 +6,10 @@ const pathToKey = path.join(process.env.PWD, "id_rsa_priv.pem");
 const JWT_PRIVATE_KEY = fs.readFileSync(pathToKey, "utf8");
 
 export const issueJWT = (userID) => {
-  const expiresIn = "1d";
+  const expiresIn = "20 s";
   const algorithm = "RS256";
   const payload = {
     sub: userID,
-    iat: Date.now(),
   };
 
   const jwt = jsonwebtoken.sign(payload, JWT_PRIVATE_KEY, {

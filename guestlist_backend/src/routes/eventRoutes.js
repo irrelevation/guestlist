@@ -1,7 +1,10 @@
 import express from "express";
 import * as eventController from "../controller/eventController";
+import { jwtAuth } from "../middleware/authMiddleware";
 
 export const eventRouter = express.Router();
+
+eventRouter.use(jwtAuth);
 
 eventRouter.route("/").post(eventController.createEvent);
 

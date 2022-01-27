@@ -7,7 +7,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { logger } from "./logger/index.js";
 import passport from "passport";
-import { jwtStrategy } from "./config/passportConfig.js";
+import passportConfig from "./config/passportConfig.js";
 import { authRouter } from "./routes/authRoutes.js";
 
 // DB Setup
@@ -15,7 +15,7 @@ const MONGO_URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_P
 mongoose
   .connect(MONGO_URL)
   .then(() => logger.info("Successfully connected to MongoDB"))
-  .catch((e) => logger.error(`Could not connect to MongoDB: ${e}`));
+  .catch((err) => logger.error(`Could not connect to MongoDB: ${err}`));
 mongoose.connection
   .on("disconnected", () => logger.error("Lost connection to MongoDB"))
   .on("reconnected", () => logger.info("Reconnected to MongoDB"));
@@ -28,10 +28,11 @@ const API_URL_PREFIX = "/api/v1";
 app.use(loggerMiddleware);
 app.use(express.json());
 app.use(cors());
+// TODO helmet
 
 // initialize authentication
-passport.use(jwtStrategy);
 app.use(passport.initialize());
+passportConfig(passport);
 
 // routing
 app.use(`${API_URL_PREFIX}/auth`, authRouter);

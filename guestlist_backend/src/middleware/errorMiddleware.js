@@ -10,7 +10,8 @@ export const errorLogger = (err, req, res, next) => {
   if (err.status >= 500) {
     logger.error(err.message);
   }
-  logger.debug(err.stack);
+  logger.debug(err);
+  if (err.stack) logger.debug(`[Stack Trace] ${err.stack}`);
   next(err);
 };
 
