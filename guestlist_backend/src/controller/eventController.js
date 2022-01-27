@@ -1,3 +1,4 @@
+import { logger } from "../logger";
 import { Event } from "../models/eventModel";
 
 export const createEvent = async (req, res) => {
@@ -9,6 +10,7 @@ export const createEvent = async (req, res) => {
 };
 
 export const getEvent = async (req, res) => {
+  console.log(req.user);
   const event = await Event.findById(req.params.eventId);
   const status = event ? 200 : 204;
   res.status(status).json({
@@ -30,6 +32,15 @@ export const deleteEvent = async (req, res) => {
   const status = event ? 200 : 204;
   res.status(status).json({
     message: "event deleted",
+  });
+};
+
+export const getEventsOf = async (req, res) => {
+  const events = await Event.find({ creator: req.params.userId });
+  const status = events ? 200 : 204;
+  res.status(status).json({
+    count: events.length,
+    events,
   });
 };
 

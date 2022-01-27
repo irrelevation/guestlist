@@ -34,9 +34,19 @@ const googleOptions = {
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/api/v1/auth/redirect/google",
 };
-
-export const googleStrategy = new GoogleStrategy(googleOptions, function (accessToken, refreshToken, profile, done) {
+const googleStrategy = new GoogleStrategy(googleOptions, function (accessToken, refreshToken, profile, done) {
   logger.debug("hit google strat");
+  return done(null, profile);
+});
+
+const facebookOptions = {
+  clientID: process.env.FACEBOOK_CLIENT_ID,
+  clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/api/v1/auth/redirect/facebook",
+  profileFields: ["id", "displayName", "email"],
+};
+const facebookStrategy = new FacebookStrategy(facebookOptions, function (accessToken, refreshToken, profile, done) {
+  logger.debug("hit FB strat");
   return done(null, profile);
 });
 
@@ -45,6 +55,7 @@ const override = (obj, done) => done(null, obj);
 const passportConfig = (passport) => {
   passport.use(jwtStrategy);
   passport.use(googleStrategy);
+  passport.use(facebookStrategy);
   passport.serializeUser(override);
   passport.deserializeUser(override);
 };

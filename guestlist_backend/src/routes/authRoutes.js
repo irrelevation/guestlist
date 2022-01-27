@@ -11,3 +11,4 @@ authRouter.route("/login/google").get(googleAuth);
 authRouter.route("/login/facebook").get(facebookAuth);
 
 authRouter.route("/redirect/google").get(googleAuth, authController.loginWithGoogle);
+authRouter.route("/redirect/facebook").get(facebookAuth, authController.loginWithFacebook);
