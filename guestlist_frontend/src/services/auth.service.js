@@ -19,15 +19,24 @@ class AuthService {
   }
 
   logout() {
+    console.log("logged out");
     localStorage.removeItem("user");
   }
 
   register({ username, email, password }) {
-    return axios.post(API_URL + "signUp", {
-      username,
-      email,
-      password,
-    });
+    return axios
+      .post(API_URL + "signUp", {
+        username,
+        email,
+        password,
+      })
+      .then((response) => {
+        const { user, token } = response.data;
+        if (token) {
+          localStorage.setItem("user", JSON.stringify({ user, token }));
+        }
+        return response.data;
+      });
   }
 
   getCurrentUser() {
