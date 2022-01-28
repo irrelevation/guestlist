@@ -77,6 +77,7 @@ export default function CreateEvent() {
                 <DateTimePicker
                   renderInput={(props) => <TextField {...props} />}
                   label="Start Date"
+                  value={start}
                   onChange={(newValue) => {
                     setStart(newValue);
                   }}
@@ -86,6 +87,7 @@ export default function CreateEvent() {
                 <DateTimePicker
                   renderInput={(props) => <TextField {...props} />}
                   label="End Date"
+                  value={end}
                   onChange={(newValue) => {
                     setEnd(newValue);
                   }}

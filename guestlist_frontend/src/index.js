@@ -21,6 +21,7 @@ render(
         <Route path="events" element={<Events />} />
         <Route path="events/create" element={<CreateEvent />} />
         <Route path="events/:id" element={<Guestlist />} />
+        <Route path="events/:id/addGuest" element={<addGuest />} />
         <Route path="signUp" element={<SignUp />} />
       </Route>
     </Routes>

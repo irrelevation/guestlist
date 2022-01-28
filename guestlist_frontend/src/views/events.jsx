@@ -79,10 +79,13 @@ function Events() {
                 <ListItem key={event._id} onClick={() => navigate(event._id)}>
                   <ListItemAvatar>
                     <Avatar>
-                      <CircleIcon color="disabled" />
+                      <CircleIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary={event.name} secondary={date} />
+                  <ListItemText
+                    primary={event.name}
+                    secondary={event.start_time && date}
+                  />
                 </ListItem>
               );
             })}
