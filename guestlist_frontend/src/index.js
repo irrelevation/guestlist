@@ -11,6 +11,7 @@ import Guestlist from "./views/guestlist";
 import SignUp from "./views/SignUp";
 import Login from "./views/login";
 import CreateEvent from "./views/createEvent";
+import AddGuest from "./views/addGuest";
 
 const rootElement = document.getElementById("root");
 render(
@@ -21,7 +22,7 @@ render(
         <Route path="events" element={<Events />} />
         <Route path="events/create" element={<CreateEvent />} />
         <Route path="events/:id" element={<Guestlist />} />
-        <Route path="events/:id/addGuest" element={<addGuest />} />
+        <Route path="events/:id/addGuest" element={<AddGuest />} />
         <Route path="signUp" element={<SignUp />} />
       </Route>
     </Routes>

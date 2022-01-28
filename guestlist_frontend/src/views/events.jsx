@@ -7,7 +7,6 @@ import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Copyright } from "../components/copyright";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -19,8 +18,6 @@ import AddIcon from "@mui/icons-material/Add";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import Zoom from "@mui/material/Zoom";
 import { useNavigate } from "react-router-dom";
-
-const theme = createTheme();
 
 const fabStyle = {
   position: "absolute",
@@ -45,65 +42,63 @@ function Events() {
 
   const { events, count } = data.data;
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <CelebrationIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          {count} Events
+        </Typography>
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <CelebrationIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            {count} Events
-          </Typography>
-          <List
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          >
-            {events.map((event) => {
-              const options = {
-                // weekday: "long",
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              };
-              let date = new Date(event.start_time);
+          {events.map((event) => {
+            const options = {
+              // weekday: "long",
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            };
+            let date = new Date(event.start_time);
 
-              if (date) date = date.toLocaleDateString(undefined, options);
-              return (
-                <ListItem key={event._id} onClick={() => navigate(event._id)}>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <CircleIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={event.name}
-                    secondary={event.start_time && date}
-                  />
-                </ListItem>
-              );
-            })}
-          </List>
-          <Zoom key="primary" in={true} unmountOnExit>
-            <Fab
-              sx={fabStyle}
-              aria-label="Add Event"
-              color="primary"
-              href="events/create"
-            >
-              <AddIcon />
-            </Fab>
-          </Zoom>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+            if (date) date = date.toLocaleDateString(undefined, options);
+            return (
+              <ListItem key={event._id} onClick={() => navigate(event._id)}>
+                <ListItemAvatar>
+                  <Avatar>
+                    <CircleIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={event.name}
+                  secondary={event.start_time && date}
+                />
+              </ListItem>
+            );
+          })}
+        </List>
+        <Zoom key="primary" in={true} unmountOnExit>
+          <Fab
+            sx={fabStyle}
+            aria-label="Add Event"
+            color="primary"
+            href="events/create"
+          >
+            <AddIcon />
+          </Fab>
+        </Zoom>
+      </Box>
+      <Copyright sx={{ mt: 5 }} />
+    </Container>
   );
 }
 

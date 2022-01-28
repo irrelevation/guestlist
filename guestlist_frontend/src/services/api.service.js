@@ -23,6 +23,14 @@ class ApiService {
       headers: authHeader(),
     });
   }
+
+  getEvent(id) {
+    return axios({
+      method: "get",
+      url: `${API_URL}events/${id}`,
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new ApiService();

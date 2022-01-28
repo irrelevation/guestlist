@@ -14,7 +14,7 @@ export const getEvent = async (req, res) => {
   const event = await Event.findById(req.params.eventId);
   const status = event ? 200 : 204;
   res.status(status).json({
-    data: event,
+    event: event,
   });
 };
 
@@ -62,12 +62,16 @@ export const getGuest = async (req, res) => {
   });
 };
 
-export const addGuest = async (req, res) => {
-  const event = await Event.findByIdAndUpdate(req.params.eventId, { $push: { guests: req.body } }, { new: true });
+export const addGuests = async (req, res) => {
+  const event = await Event.findByIdAndUpdate(
+    req.params.eventId,
+    { $push: { guests: { $each: req.body.guests } } },
+    { new: true }
+  );
   const status = event ? 200 : 204;
   res.status(status).json({
-    message: `${req.body.name} was added to the guest list`,
-    data: event,
+    message: `${req.body.guests.length} guests were added to the guest list [${req.params.eventId}]`,
+    event: event,
   });
 };
 

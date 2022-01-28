@@ -6,14 +6,11 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/auth.service";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 import apiService from "../services/api.service";
 import { Copyright } from "../components/copyright";
-
-const theme = createTheme();
 
 export default function CreateEvent() {
   let navigate = useNavigate();
@@ -34,78 +31,71 @@ export default function CreateEvent() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h5">
-            Create event
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  name="name"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  id="location"
-                  label="Location"
-                  name="location"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <DateTimePicker
-                  renderInput={(props) => <TextField {...props} />}
-                  label="Start Date"
-                  value={start}
-                  onChange={(newValue) => {
-                    setStart(newValue);
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <DateTimePicker
-                  renderInput={(props) => <TextField {...props} />}
-                  label="End Date"
-                  value={end}
-                  onChange={(newValue) => {
-                    setEnd(newValue);
-                  }}
-                />
-              </Grid>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Create event
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                name="name"
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                autoFocus
+              />
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              CREATE
-            </Button>
-          </Box>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id="location"
+                label="Location"
+                name="location"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <DateTimePicker
+                renderInput={(props) => <TextField {...props} />}
+                label="Start Date"
+                value={start}
+                onChange={(newValue) => {
+                  setStart(newValue);
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <DateTimePicker
+                renderInput={(props) => <TextField {...props} />}
+                label="End Date"
+                value={end}
+                onChange={(newValue) => {
+                  setEnd(newValue);
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            CREATE
+          </Button>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+      </Box>
+      <Copyright sx={{ mt: 5 }} />
+    </Container>
   );
 }

@@ -1,17 +1,20 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Outlet } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const queryClient = new QueryClient();
+const theme = createTheme();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Outlet />
+        <ThemeProvider theme={theme}>
+          <Outlet />
+        </ThemeProvider>
       </LocalizationProvider>
     </QueryClientProvider>
   );
