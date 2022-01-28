@@ -42,7 +42,8 @@ function Guestlist() {
     return <span>Error: {error.message}</span>;
   }
 
-  console.log(data.data.event);
+  const { guests } = data.data.event;
+  console.log(guests);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,34 +62,22 @@ function Guestlist() {
         <Typography component="h1" variant="h5">
           Guests
         </Typography>
-        {/* <List
+        <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         >
-          {events.map((event) => {
-            const options = {
-              // weekday: "long",
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            };
-            let date = new Date(event.start_time);
-
-            if (date) date = date.toLocaleDateString(undefined, options);
+          {guests.map((guest, index) => {
             return (
-              <ListItem key={event._id} onClick={() => navigate(event._id)}>
+              <ListItem key={index}>
                 <ListItemAvatar>
                   <Avatar>
                     <CircleIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText
-                  primary={event.name}
-                  secondary={event.start_time && date}
-                />
+                <ListItemText primary={guest} />
               </ListItem>
             );
           })}
-        </List> */}
+        </List>
         <Zoom key="primary" in={true} unmountOnExit>
           <Fab
             sx={fabStyle}
