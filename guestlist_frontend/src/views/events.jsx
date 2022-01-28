@@ -63,7 +63,6 @@ function Events() {
         >
           {events.map((event) => {
             const options = {
-              // weekday: "long",
               year: "numeric",
               month: "short",
               day: "numeric",
@@ -80,7 +79,10 @@ function Events() {
                 </ListItemAvatar>
                 <ListItemText
                   primary={event.name}
-                  secondary={event.start_time && date}
+                  secondary={
+                    event.start_time &&
+                    date + ` - ${event.guests.length} guests`
+                  }
                 />
               </ListItem>
             );

@@ -7,17 +7,24 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import authService from "./services/auth.service";
 import { Fab } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
+import HomeIcon from "@mui/icons-material/Home";
 
 const queryClient = new QueryClient();
 const theme = createTheme();
 
-const fabStyle = {
+const logoutStyle = {
   position: "absolute",
   top: 16,
   right: 16,
 };
+const homeStyle = {
+  position: "absolute",
+  top: 16,
+  left: 16,
+};
 
 function App() {
+  const user = authService.getCurrentUser();
   const navigate = useNavigate();
   const handleLogout = () => {
     authService.logout();
@@ -29,14 +36,26 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider theme={theme}>
           <Outlet />
-          <Fab
-            sx={fabStyle}
-            aria-label="Add Event"
-            color="primary"
-            onClick={handleLogout}
-          >
-            <LogoutIcon />
-          </Fab>
+          {user && (
+            <Fab
+              sx={logoutStyle}
+              aria-label="Add Event"
+              color="primary"
+              onClick={handleLogout}
+            >
+              <LogoutIcon />
+            </Fab>
+          )}
+          {user && (
+            <Fab
+              sx={homeStyle}
+              aria-label="Home"
+              color="primary"
+              onClick={() => navigate("/events")}
+            >
+              <HomeIcon />
+            </Fab>
+          )}
         </ThemeProvider>
       </LocalizationProvider>
     </QueryClientProvider>
