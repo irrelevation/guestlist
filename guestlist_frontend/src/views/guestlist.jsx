@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import apiService from "../services/api.service";
 import { useQuery } from "react-query";
@@ -20,6 +20,7 @@ import CelebrationIcon from "@mui/icons-material/Celebration";
 import Zoom from "@mui/material/Zoom";
 import { useNavigate } from "react-router-dom";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { TextField } from "@mui/material";
 
 const fabStyle = {
   position: "absolute",
@@ -30,6 +31,7 @@ const fabStyle = {
 function Guestlist() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [searchTerm, setSearchTerm] = useState("");
   const { isLoading, isError, data, error } = useQuery(["event", id], () =>
     apiService.getEvent(id)
   );
@@ -43,7 +45,6 @@ function Guestlist() {
   }
 
   const { guests } = data.data.event;
-  console.log(guests);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -62,21 +63,36 @@ function Guestlist() {
         <Typography component="h1" variant="h5">
           Guests
         </Typography>
+        <TextField
+          sx={{
+            mt: 2,
+            mb: 2,
+          }}
+          id="outlined-search"
+          label="Search Guest"
+          type="search"
+          width="100%"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
+
         <List
           sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         >
-          {guests.map((guest, index) => {
-            return (
-              <ListItem key={index}>
-                <ListItemAvatar>
-                  <Avatar>
-                    <CircleIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={guest} />
-              </ListItem>
-            );
-          })}
+          {guests
+            .filter((guest) => guest.includes(searchTerm))
+            .map((guest, index) => {
+              return (
+                <ListItem key={index}>
+                  <ListItemAvatar>
+                    {/* <Avatar>
+                      <CircleIcon />
+                    </Avatar> */}
+                  </ListItemAvatar>
+                  <ListItemText primary={guest} />
+                </ListItem>
+              );
+            })}
         </List>
         <Zoom key="primary" in={true} unmountOnExit>
           <Fab
