@@ -31,6 +31,17 @@ class ApiService {
       headers: authHeader(),
     });
   }
+
+  addGuests({ guests, eventId }) {
+    console.log("fetching guests", guests, "for event", eventId);
+
+    return axios({
+      method: "post",
+      url: `${API_URL}events/${eventId}/guests`,
+      headers: authHeader(),
+      data: { guests },
+    });
+  }
 }
 
 export default new ApiService();
