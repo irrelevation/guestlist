@@ -10,7 +10,6 @@ export const createEvent = async (req, res) => {
 };
 
 export const getEvent = async (req, res) => {
-  console.log(req.user);
   const event = await Event.findById(req.params.eventId);
   const status = event ? 200 : 204;
   res.status(status).json({

@@ -33,8 +33,6 @@ class ApiService {
   }
 
   addGuests({ guests, eventId }) {
-    console.log("fetching guests", guests, "for event", eventId);
-
     return axios({
       method: "post",
       url: `${API_URL}events/${eventId}/guests`,

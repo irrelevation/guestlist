@@ -19,7 +19,6 @@ class AuthService {
   }
 
   logout() {
-    console.log("logged out");
     localStorage.removeItem("user");
   }
 
