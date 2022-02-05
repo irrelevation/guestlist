@@ -21,7 +21,7 @@ export default function AddGuest() {
   const [guestFieldCount, setGuestFieldCount] = React.useState(2);
 
   const incrementGuestFieldCount = () =>
-    setGuestFieldCount(guestFieldCount + 1);
+    setGuestFieldCount((prevState) => prevState + 1);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -13,12 +13,12 @@ const queryClient = new QueryClient();
 const theme = createTheme();
 
 const logoutStyle = {
-  position: "absolute",
+  position: "fixed",
   top: 16,
   right: 16,
 };
 const homeStyle = {
-  position: "absolute",
+  position: "fixed",
   top: 16,
   left: 16,
 };

@@ -20,7 +20,7 @@ import Zoom from "@mui/material/Zoom";
 import { useNavigate } from "react-router-dom";
 
 const fabStyle = {
-  position: "absolute",
+  position: "fixed",
   bottom: 16,
   right: 16,
 };

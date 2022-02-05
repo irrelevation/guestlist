@@ -23,7 +23,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { TextField } from "@mui/material";
 
 const fabStyle = {
-  position: "absolute",
+  position: "fixed",
   bottom: 16,
   right: 16,
 };
