@@ -1,0 +1,10 @@
+FROM node:17.4
+RUN mkdir -p /hom/node/app
+WORKDIR /home/node/app
+COPY package.json .
+RUN npm install
+COPY . .
+ENV PORT 3000
+EXPOSE $PORT
+USER node
+CMD ["npm", "run", "dev"]
