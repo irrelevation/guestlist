@@ -10,8 +10,8 @@ An electronic guestlist system.
 
 ### Stop
 
-`docker-compose -f docker-compose.dev.yml up`
+`docker-compose -f docker-compose.dev.yml down`
 
 ## Techstack
 
-MERN
+A **React** Frontend with a **NodeJS**, **Express** and **MongoDB** backend.
