@@ -6,7 +6,8 @@ An electronic guestlist system.
 
 ### Start
 
-`docker-compose -f docker-compose.dev.yml up`
+Backend: `docker-compose -f docker-compose.dev.yml up`
+Frontend: `cd guestlist_frontend && npm start`
 
 ### Stop
 

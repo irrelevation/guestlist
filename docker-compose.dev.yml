@@ -7,10 +7,24 @@ services:
       dockerfile: Dockerfile.dev
       args:
         NODE_ENV: development
-    image: be-my-guest:dev
+    image: guestlist_backend:dev
     volumes:
       - ./guestlist_backend:/home/node/app
       - /home/node/app/node_modules
     command: npm run dev
     ports:
       - "3000:3000"
+
+  # frontend:
+  #   build:
+  #     context: ./guestlist_frontend
+  #     dockerfile: Dockerfile.dev
+  #     args:
+  #       NODE_ENV: development
+  #   image: guestlist_frontend:dev
+  #   volumes:
+  #     - ./guestlist_frontend:/home/node/react-app
+  #     - /home/node/react-app/node_modules
+  #   command: npm start
+  #   ports:
+  #     - "3001:3001"

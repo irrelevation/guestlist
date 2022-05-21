@@ -1,0 +1,10 @@
+FROM node:18.1
+RUN mkdir -p /home/node/react-app
+WORKDIR /home/node/react-app
+COPY package.json .
+RUN npm install
+COPY . .
+ENV PORT 3000
+EXPOSE $PORT
+USER node
+CMD ["npm", "start"]

@@ -1,5 +1,5 @@
 FROM node:17.4
-RUN mkdir -p /hom/node/app
+RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
 COPY package.json .
 RUN npm install
