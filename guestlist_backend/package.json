@@ -27,7 +27,7 @@
     "express": "^5.0.0-alpha.8",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.7",
+    "mongoose": "^6.4.6",
     "morgan": "^1.10.0",
     "passport": "^0.5.2",
     "passport-facebook": "^3.0.0",
