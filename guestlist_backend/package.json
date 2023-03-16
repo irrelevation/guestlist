@@ -26,7 +26,7 @@
     "dotenv": "^14.2.0",
     "express": "^5.0.0-alpha.8",
     "http-errors": "^2.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.4.6",
     "morgan": "^1.10.0",
     "passport": "^0.5.2",
